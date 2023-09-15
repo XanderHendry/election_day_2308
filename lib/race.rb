@@ -25,10 +25,14 @@ class Race
     if open?
       false
     else
-      votes = { }
-      @candidates.sort { |candidate| votes[candidate.name] = candidate.votes}
-      highest_count = votes.values.max
+      votes = @candidates.map { |candidate| candidate.votes}
+      highest_count = votes.max
       winner = @candidates.find {|candidate| candidate.votes == highest_count}
     end
+  end
+
+  def tie?
+    votes = @candidates.map { |candidate| candidate.votes }
+    votes[0] == votes [1]
   end
 end

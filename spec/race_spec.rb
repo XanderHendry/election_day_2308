@@ -76,12 +76,12 @@ RSpec.describe Race do
     end
   end
 
-  xdescribe '#tie?' do
+  describe '#tie?' do
     it 'will return a boolean indicating if two or more candidates received the highest number of votes.' do
       candidate1 = race.register_candidate!({name: "Diana D", party: :democrat})
       candidate2 = race.register_candidate!({name: "Roberto R", party: :republican})
       candidate1.vote_for!
-      expect(race.tie?).to eq(true)
+      expect(race.tie?).to eq(false)
       candidate2.vote_for!
       expect(race.tie?).to eq(true)
     end
