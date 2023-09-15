@@ -10,8 +10,6 @@ RSpec.describe Election do
   end
 
   describe '#add_race' do
-    before(:each) do
-    end
     it 'will add a Race to the election' do
       race = election.add_race("Texas Governor")
       expect(race).to be_a(Race)
@@ -21,11 +19,10 @@ RSpec.describe Election do
   end
 
   describe '#candidates' do
-    before(:each) do
-      it 'will return an array of all Candidate objects in the Election' do
-        election.add_race("Texas Governor")
-        candidate1 = elections.races[0].register_candidate!({name: "Diana D", party: :democrat})
-        candidate2 = elections.races[0].register_candidate!({name: "Roberto R", party: :republican})
+    it 'will return an array of all Candidate objects in the Election' do
+      election.add_race("Texas Governor")
+      candidate1 = elections.races[0].register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = elections.races[0].register_candidate!({name: "Roberto R", party: :republican})
       expect(election.candidates).to eq([candidate1, candidate2])
     end
   end
