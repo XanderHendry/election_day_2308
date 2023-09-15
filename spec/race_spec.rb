@@ -18,11 +18,11 @@ RSpec.describe Race do
     it 'will add a new Candidate to the race' do
       expect(@candidate1.class).to eq(Candidate)
       expect(@candidate1.name).to eq("Diana D")
-      expect(@candidate1.class).to eq(:democrat)
+      expect(@candidate1.party).to eq(:democrat)
       expect(@candidate2.class).to eq(Candidate)
       expect(@candidate2.name).to eq("Roberto R")
-      expect(@candidate2.class).to eq(:republican)
-      expect(race.candidates).to eq(@candidate1, @candidate2)
+      expect(@candidate2.party).to eq(:republican)
+      expect(race.candidates).to eq([@candidate1, @candidate2])
     end
   end
 end
