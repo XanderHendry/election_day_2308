@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 RSpec.describe Race do
   let(:race) { Race.new("Texas Governor") }
@@ -39,7 +40,7 @@ RSpec.describe Race do
     end
   end
 
-  xdescribe '#winner' do
+  describe '#winner' do
     before(:each) do 
       @candidate1 = race.register_candidate!({name: "Diana D", party: :democrat})
       @candidate2 = race.register_candidate!({name: "Roberto R", party: :republican})
@@ -56,10 +57,12 @@ RSpec.describe Race do
       @candidate2.vote_for!
       @candidate2.vote_for!
       @candidate2.vote_for!
+      race.close!
       expect(race.winner).to eq(@candidate1)
     end
     10.times do
       it 'will return either candidate if there is a tie' do
+        
         @candidate1.vote_for!
         @candidate1.vote_for!
         @candidate1.vote_for!
@@ -67,6 +70,7 @@ RSpec.describe Race do
         @candidate2.vote_for!
         @candidate2.vote_for!
         @candidate2.vote_for!
+        race.close!
         expect(race.winner).to eq(@candidate1 || @candidate2)
       end
     end

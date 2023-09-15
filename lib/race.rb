@@ -20,4 +20,15 @@ class Race
   def close!
     @open = false
   end
+
+  def winner
+    if open?
+      false
+    else
+      votes = { }
+      @candidates.sort { |candidate| votes[candidate.name] = candidate.votes}
+      highest_count = votes.values.max
+      winner = @candidates.find {|candidate| candidate.votes == highest_count}
+    end
+  end
 end
