@@ -11,4 +11,8 @@ class Election
     @races << race
     race
   end
+  
+  def candidates
+    candidates = @races.flat_map { |race| race.candidates }
+  end
 end

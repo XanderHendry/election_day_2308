@@ -21,17 +21,27 @@ RSpec.describe Election do
   describe '#candidates' do
     it 'will return an array of all Candidate objects in the Election' do
       election.add_race("Texas Governor")
-      candidate1 = elections.races[0].register_candidate!({name: "Diana D", party: :democrat})
-      candidate2 = elections.races[0].register_candidate!({name: "Roberto R", party: :republican})
+      candidate1 = election.races[0].register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = election.races[0].register_candidate!({name: "Roberto R", party: :republican})
       expect(election.candidates).to eq([candidate1, candidate2])
+    end
+
+    it 'will work with multiple races in the election' do
+      election.add_race("Texas Governor")
+      election.add_race("Texas Senate")
+      candidate1 = election.races[0].register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = election.races[0].register_candidate!({name: "Roberto R", party: :republican})
+      candidate3 = election.races[1].register_candidate!({name: "Chris L", party: :democrat})
+      candidate4 = election.races[1].register_candidate!({name: "Richard P", party: :republican})
+      expect(election.candidates).to eq([candidate1, candidate2, candidate3, candidate4])
     end
   end
 
   describe '#vote_counts' do
     it 'will return a hash with each canidates name asa key and their count of votes as the value' do
       election.add_race("Texas Governor")
-      candidate1 = elections.races[0].register_candidate!({name: "Diana D", party: :democrat})
-      candidate2 = elections.races[0].register_candidate!({name: "Roberto R", party: :republican})
+      candidate1 = election.races[0].register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = election.races[0].register_candidate!({name: "Roberto R", party: :republican})
       candidate1.vote_for!
       candidate1.vote_for!
       candidate1.vote_for!
