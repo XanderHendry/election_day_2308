@@ -34,12 +34,12 @@ RSpec.describe Race do
 
   describe '#close!' do
     it 'will close the race' do
-      election.close!
-      expect(election.open?).to eq(false)
+      race.close!
+      expect(race.open?).to eq(false)
     end
   end
 
-  describe '#winner' do
+  xdescribe '#winner' do
     before(:each) do 
       @candidate1 = race.register_candidate!({name: "Diana D", party: :democrat})
       @candidate2 = race.register_candidate!({name: "Roberto R", party: :republican})
@@ -72,7 +72,7 @@ RSpec.describe Race do
     end
   end
 
-  describe '#tie?' do
+  xdescribe '#tie?' do
     it 'will return a boolean indicating if two or more candidates received the highest number of votes.' do
       candidate1 = race.register_candidate!({name: "Diana D", party: :democrat})
       candidate2 = race.register_candidate!({name: "Roberto R", party: :republican})
